@@ -1,0 +1,34 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ .Values.istio.jaegergateway }}
+  namespace: istio-system
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 15030
+      name: http-jaeger
+      protocol: HTTP
+    hosts:
+    - "*"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: {{ .Values.istio.jaegervs }}
+  namespace: istio-system
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - {{ .Values.istio.jaegergateway }}
+  http:
+  - match:
+    - port: 15030
+    route:
+    - destination:
+        host: tracing
+        port:
+          number: 9411

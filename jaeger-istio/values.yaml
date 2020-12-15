@@ -1,0 +1,6 @@
+istio:
+  # set to true to use configure Istio Gateway + VirtualService instead of Ingress
+  # requires that the target namespace has automatic sidecar injection enabled
+  enabled: true
+  jaegergateway: jaeger-gateway
+  jaegervs: jaeger-vs

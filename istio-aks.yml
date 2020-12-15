@@ -10,19 +10,19 @@ spec:
       defaultNodeSelector:
         beta.kubernetes.io/os: linux
       # Enable mutual TLS for the control plane
-      controlPlaneSecurityEnabled: true
+      controlPlaneSecurityEnabled: false
       mtls:
         # Require all service to service communication to have mtls
         enabled: false
     grafana:
       # Enable Grafana deployment for analytics and monitoring dashboards
-      enabled: true
+      enabled: false
       security:
         # Enable authentication for Grafana
-        enabled: true
+        enabled: false
     kiali:
       # Enable the Kiali deployment for a service mesh observability dashboard
-      enabled: true
+      enabled: false
     tracing:
       # Enable the Jaeger deployment for tracing
-      enabled: true
+      enabled: false
